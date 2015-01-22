@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html class="no-js">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<title>Contab</title>
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width">
+
+		<link rel="stylesheet" href="/css/bootstrap.min.css">
+		<style>
+			body {
+				padding-top: 50px;
+				padding-bottom: 20px;
+			}
+		</style>
+		<link rel="stylesheet" href="/css/bootstrap-theme.min.css">
+		<link rel="stylesheet" href="/css/main.css">
+		<link rel="stylesheet" href="/css/redmond/jquery-ui-1.10.4.custom.min.css">
+
+		<script src="/js/vendor/modernizr-2.6.2.min.js"></script>
+	</head>
+	<body>
+		<div class="navbar navbar-inverse navbar-fixed-top">
+			<div class="container">
+				<div class="navbar-header">
+				  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				  </button>
+				  <a class="navbar-brand" href="/">Contab</a>
+				</div>
+			<div class="navbar-collapse collapse">
+			  <ul class="nav navbar-nav">
+				<li><a href="/">Ver todo</a></li>
+				<li><a href="/payment/new">Añadir pago</a></li>
+				<li><a href="#about">Filtrar</a></li>
+				<li class="dropdown">
+				  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Editar <b class="caret"></b></a>
+				  <ul class="dropdown-menu">
+					<li><a href="/company">Compañías</a></li>
+					<li><a href="/passbook">Libretas</a></li>
+					<li><a href="/payer">Pagadores</a></li>
+					<li><a href="/paymethod">Métodos de pago</a></li>
+				  </ul>
+				</li>
+			  </ul>
+			</div><!--/.navbar-collapse -->
+		  </div>
+		</div>
+
+		<div class="container">
+
+			<%= yield %>
+
+		  <hr>
+
+		  <footer>
+			<p>&copy; Company 2013</p>
+		  </footer>
+		</div> <!-- /container -->
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+		<script>window.jQuery || document.write('<script src="/js/vendor/jquery-1.10.1.min.js"><\/script>')</script>
+
+		<script src="/js/vendor/bootstrap.min.js"></script>
+		<script src="/js/vendor/jquery-ui-1.10.4.custom.min.js"></script>
+
+		<script src="/js/plugins.js"></script>
+		<script src="/js/main.js"></script>
+
+		
+		<!--<script>
+			$(function() {
+				var availableTags = [
+					"ActionScript",
+					"AppleScript",
+					"Asp",
+					"BASIC",
+					"C",
+					"C++",
+					"Clojure",
+					"COBOL",
+					"ColdFusion",
+					"Erlang",
+					"Fortran",
+					"Groovy",
+					"Haskell",
+					"Java",
+					"JavaScript",
+					"Lisp",
+					"Perl",
+					"PHP",
+					"Python",
+					"Ruby",
+					"Scala",
+					"Scheme"
+				];
+
+				$( "#concepto" ).autocomplete({
+					source: availableTags
+				});
+			});
+		</script> -->
+	</body>
+</html>
+

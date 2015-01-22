@@ -1,0 +1,26 @@
+<div id="mycontent">
+	<% if @companies.count == 0 %>
+		<%= "<h2>No hay datos</h2>" %>
+	<% else %>
+		<table class="table table-hover table-condensed">
+			<thead>
+				<tr>
+					<th></th>
+					<th></th>
+					<th>Compañía</th>
+				</tr>
+			</thead>
+			<tbody>
+	      <% @companies.each do |company| %>
+	      	<tr>
+	      		<td class="icon"><a href=<%= "/company/remove/" + company.id.to_s %> title="Eliminar compañía" class="deleteCompany"><span class="glyphicon glyphicon-remove"></span></a></td>
+	      		<td class="icon"><a href=<%= "/company/edit/" + company.id.to_s %> title="Editar compañía" class="editCompany"><span class="glyphicon glyphicon-pencil"></span></td>
+		      	<td class="company"><%= company.name %></td>
+	      	</tr>
+	      <% end %>
+			</tbody>
+		</table>
+	<% end %>
+
+	<a href="/company/new/" title="Añadir compañía" class="addCompany"><span class="glyphicon glyphicon-plus"></span> Añadir compañía</a>
+</div>

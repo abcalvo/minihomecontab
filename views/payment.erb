@@ -1,0 +1,114 @@
+<div id="mycontent">
+  <form class="form-horizontal" role="form" action="">
+    <div class="form-group">
+      <label for="date" class="col-sm-2 control-label">Fecha</label>
+      <div class="col-sm-2">
+        <input type="date" class="form-control" id="date" placeholder="Fecha" <%= "value=\"" + @payment.date.to_s + "\"" if instance_variable_defined?(:@payment) %>>
+      </div>
+
+      <label for="company" class="col-sm-1 control-label">Empresa</label>
+      <div class="col-sm-2">
+        <select class="form-control" id="company">
+        	<optgroup id="companies">
+  	      	<% if @companies.count == 0 %>
+              <%= "<option></option>" %>
+            <% else %>
+              <% @companies.each do |company| %>
+                <option value="<%= company.id %>" <%= "selected=\"true\"" if instance_variable_defined?(:@payment) and (@payment.company.id == company.id) %>><%= company.name %></option>
+              <% end %>
+            <% end %>
+        	</optgroup>
+        	<optgroup>
+        		<option value="99999">Añadir</option>
+        	</optgroup>
+        </select>
+      </div>
+
+      <label for="paymethod" class="col-sm-2 control-label">Forma de pago</label>
+      <div class="col-sm-2">
+        <select class="form-control" id="paymethod">
+        	<optgroup id="paymethods">
+  	      	<% if @paymethods.count == 0 %>
+              <%= "<option></option>" %>
+            <% else %>
+              <% @paymethods.each do |paymethod| %>
+                <option value="<%= paymethod.id %>" <%= "selected=\"true\"" if instance_variable_defined?(:@payment) and (@payment.paymethod.id == paymethod.id) %>><%= paymethod.name %></option>
+              <% end %>
+            <% end %>
+        	</optgroup>
+        	<optgroup>
+        		<option value="99999">Añadir</option>
+        	</optgroup>
+        </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="concept" class="col-sm-2 control-label">Concepto</label>
+      <div class="col-sm-5">
+        <input type="text" class="form-control" id="concept" placeholder="Concepto" <%= "value=\"" + @payment.concept.to_s + "\"" if instance_variable_defined?(:@payment) %>>
+      </div>
+
+      <label for="payer" class="col-sm-2 control-label">Pagador</label>
+      <div class="col-sm-2">
+        <select class="form-control" id="payer">
+        	<optgroup id="payers">
+            <option value="0"></option>
+            <% @payers.each do |payer| %>
+              <option value="<%= payer.id %>" <%= "selected=\"true\"" if instance_variable_defined?(:@payment) and (not @payment.payer.nil?) and (@payment.payer.id == payer.id) %>><%= payer.name %></option>
+            <% end %>
+        	</optgroup>
+        	<optgroup>
+        		<option value="99999">Añadir</option>
+        	</optgroup>
+        </select>
+      </div>
+    </div>
+    <div class="form-group">
+    	<label for="passbook" class="col-sm-2 control-label">Libreta</label>
+      <div class="col-sm-2">
+        <select class="form-control" id="passbook">
+        	<optgroup id="passbooks">
+  	      	<% if @passbooks.count == 0 %>
+              <%= "<option></option>" %>
+            <% else %>
+              <% @passbooks.each do |passbook| %>
+                <option value="<%= passbook.id %>" <%= "selected=\"true\"" if instance_variable_defined?(:@payment) and (not @payment.passbook.nil?) and (@payment.passbook.id == passbook.id) %>><%= passbook.name %></option>
+              <% end %>
+            <% end %>
+        	</optgroup>
+        	<optgroup>
+        		<option value="99999">Añadir</option>
+        	</optgroup>
+        </select>
+      </div>
+
+      <label for="quantity" class="col-sm-1 control-label">Pago</label>
+      <div class="col-sm-2">
+        <input type="text" class="form-control" id="quantity" placeholder="Pago" <%= "value=\"" + '%.2f' % @payment.quantity + "\"" if instance_variable_defined?(:@payment) %>>
+      </div>
+
+      <label for="number" class="col-sm-2 control-label">Número</label>
+      <div class="col-sm-2">
+        <input type="text" class="form-control" id="number" placeholder="Número" <%= "value=\"" + @payment.number.to_s + "\"" if instance_variable_defined?(:@payment) %>>
+      </div>
+    </div>
+    <br>
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-1">
+        <% if instance_variable_defined?(:@payment) %>
+          <button type="submit" class="btn btn-default" id="update"><a href="<%= @payment.id %>">Actualizar</a></button>
+        <% else %>
+          <button type="submit" class="btn btn-default" id="save">Guardar</button>
+        <% end %>
+      </div>
+      <div class="col-sm-1">
+        <button class="btn btn-default" id="cancel">Cancelar</button>
+      </div>
+      <% if not instance_variable_defined?(:@payment) %>
+        <div class="col-sm-1">
+          <button class="btn btn-default" id="addAnother">Añadir otro</button>
+        </div>
+      <% end %>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,56 @@
+<div id="mycontent">
+	<% if @payments.count == 0 %>
+		<%= "<h2>No hay datos</h2>" %>
+	<% else %>
+		<table class="table table-hover table-condensed">
+			<thead>
+				<tr>
+					<th></th>
+					<th></th>
+					<th class="col-md-1"><a href="#"><span class="glyphicon glyphicon-chevron-up"></span></a> Fecha <a href="#"><span class="glyphicon glyphicon-chevron-down"></span></a></th>
+					<th><a href="#"><span class="glyphicon glyphicon-chevron-up"></span></a> Concepto <a href="#"><span class="glyphicon glyphicon-chevron-down"></span></a></th>
+					<th class="col-md-1"><a href="#"><span class="glyphicon glyphicon-chevron-up"></span></a> Cantidad <a href="#"><span class="glyphicon glyphicon-chevron-down"></span></a></th>
+					<th>Número</th>
+					<th><a href="#"><span class="glyphicon glyphicon-chevron-up"></span></a> Compañía <a href="#"><span class="glyphicon glyphicon-chevron-down"></span></a></th>
+					<th><a href="#"><span class="glyphicon glyphicon-chevron-up"></span></a> Método de pago <a href="#"><span class="glyphicon glyphicon-chevron-down"></span></a></th>
+					<th><a href="#"><span class="glyphicon glyphicon-chevron-up"></span></a> Pagador <a href="#"><span class="glyphicon glyphicon-chevron-down"></span></a></th>
+					<th><a href="#"><span class="glyphicon glyphicon-chevron-up"></span></a> Libreta <a href="#"><span class="glyphicon glyphicon-chevron-down"></span></a></th>
+				</tr>
+			</thead>
+			<tbody>
+	      <% @payments.each do |payment| %>
+	      	<tr>
+	      		<td class="icon"><a href=<%= "/payment/remove/" + payment.id.to_s %> title="Eliminar pago" class="deletePayment"><span class="glyphicon glyphicon-remove"></span></a></td>
+	      		<td class="icon"><a href=<%= "/payment/edit/" + payment.id.to_s %> title="Editar pago" class="editPayment"><span class="glyphicon glyphicon-pencil"></span></td>
+		      	<td class="date"><%= payment.date.strftime("%d-%m-%Y") %></td>
+		      	<td class="concept"><%= payment.concept %></td>
+		      	<td class="quantity text-right"><%= '%.2f' % payment.quantity %>€</td>
+		      	<td class="number"><%= payment.number %></td>
+		      	<td class="company"><a href="<%= @base_url %>/company/<%= payment.company.id %>"><%= payment.company.name %></a></td>
+		      	<td class="paymethod"><a href="<%= @base_url %>/paymethod/<%= payment.paymethod.id %>"><%= payment.paymethod.name %></a></td>
+		      	<td class="payer"><%= "<a href=\"#{@base_url}/payer/#{payment.payer.id}\"> #{payment.payer.name}" unless payment.payer.nil? %></a></td>
+		      	<td class="passbook"><%= "<a href=\"#{@base_url}/passbook/#{payment.passbook.id}\"> #{payment.passbook.name}" unless payment.passbook.nil? %></a></td>
+	      	</tr>
+	      <% end %>
+			</tbody>
+		</table>
+	<% end %>
+
+	<div class="row">
+		<div class="col-md-2">
+			<a href="/payment/new" title="Añadir pago" class="addPayment"><span class="glyphicon glyphicon-plus"></span> Añadir pago</a>
+		</div>
+		<div class="col-md-10 text-right">
+			<% if @page > 0 %>
+				<a href="<%= @prev_page %>" title="Anterior página"><span class="glyphicon glyphicon-chevron-left"></span> Anterior página</a>
+			<% end %>
+			<% if @page > 0 and @page < @total_pages %>
+				 | 
+			<% end %>
+			<% if @page < @total_pages %>
+				<a href="<%= @next_page %>" title="Siguiente página"> Siguiente página <span class="glyphicon glyphicon-chevron-right"></span></a>
+			<% end %>
+		</div>
+	</div>
+
+</div>
